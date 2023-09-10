@@ -1,0 +1,41 @@
+---
+title: "Assignment_1"
+output: html_document
+date: "2023-09-10"
+---
+Imported Dataset from ChatGPT and named it as Dataset csv file
+
+```{r}
+Dataset <- read.csv("C:/Users/91916/Desktop/Dataset.csv")
+Dataset
+
+```
+
+
+```{r}
+library(fBasics)
+
+options(scipen=999)
+
+basicStats(data.frame(Dataset$Age,Dataset$Math_Score,Dataset$English_Score))
+
+
+```
+
+```{r}
+summary(Dataset)
+```
+```{r}
+library(caret)
+Model_range_normalized<-preProcess(Dataset,method = "range")
+Dataset_replica=predict(Model_range_normalized,Dataset)
+summary(Dataset_replica)
+```
+
+
+```{r}
+hist(Dataset_replica$Age) #Graphical representation is a histogram with the selected variable points 
+x <- Dataset_replica$Age 
+y <- Dataset_replica$Math_Score
+plot(x, y, main = "Matches played and the number of Wins", xlab = "Age", ylab = "Math Score")
+```
